@@ -3,8 +3,6 @@ using UnityEngine.UI;
 
 public class MinimapGlitch : MonoBehaviour
 {
-    public RectTransform mapTransform;
-
     public float glitchStartPercent = 0.7f; // 70%
     public float maxShake = 10f;
     public float glitchSpeed = 20f;
@@ -51,6 +49,9 @@ public class MinimapGlitch : MonoBehaviour
         // ROTATION DISTORTION
         float rotation = Mathf.Sin(Time.time * glitchSpeed) * 10f * t;
         rect.rotation = Quaternion.Euler(0, 0, rotation);
+
+
+        
     }
 }
 
