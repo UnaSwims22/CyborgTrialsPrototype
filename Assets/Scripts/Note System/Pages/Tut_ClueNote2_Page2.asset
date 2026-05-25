@@ -1,0 +1,28 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47dec2f1d8be0e04a9e0f94e08e1c6cf, type: 3}
+  m_Name: Tut_ClueNote2_Page2
+  m_EditorClassIdentifier: 
+  type: 0
+  text: "Whatever you do, do not let yourself fall into the dark. Not even for a
+    moment. It is not just absence, it's hunger. And it remembers you.\n\nI thought
+    I could outrun it.\nI thought I could outthink it.\n\nNow I understand\u2026
+    it doesn\u2019t chase you.\nIt replaces you.\n\nIf you feel yourself growing
+    tired, if your thoughts start to echo back wrong, turn back while you still can.
+    The maze does not forgive hesitation.\n\nI can hear it now. Inside the walls.
+    Inside me.\n\nIt\u2019s too late for me."
+  texture: {fileID: 21300000, guid: fe28bf42f38b7c44d8174dffa2650480, type: 3}
+  useSubscript: 1
+  displayLines: 1
+  narration: {fileID: 0}
+  narration_PlayOnce: 0
+  narrationPlayed: 0
