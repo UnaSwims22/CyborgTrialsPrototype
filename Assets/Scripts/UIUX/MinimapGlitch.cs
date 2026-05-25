@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class MinimapGlitch : MonoBehaviour
 {
+    public RectTransform mapTransform;
 
     public float glitchStartPercent = 0.7f; // 70%
     public float maxShake = 10f;
