@@ -63,7 +63,7 @@ public class InfoUIManager : MonoBehaviour
         }
         Instance = this;
 
-        DontDestroyOnLoad(gameObject);
+       // DontDestroyOnLoad(gameObject);
 
         // Make sure panel is hidden at start
         infoPanel.SetActive(false);
@@ -127,8 +127,6 @@ public class InfoUIManager : MonoBehaviour
 
     public void AddGreenClue()
     {
-
-
 
         currentGreenClues++;
 

@@ -7,27 +7,33 @@ public class UITextScrambler : MonoBehaviour
 {
     public TMP_Text targetText;
 
-    [TextArea]
-    public string originalText;
+   // [TextArea]
+    //public string originalText;
 
     public string corruptionChars = "@#$%&*!?/<>[]{}";
 
     public float scrambleSpeed = 0.05f;
 
     private float timer;
+    private string liveText;
 
-    void Start()
-    {
-        originalText = targetText.text;
-    }
+    //void Start()
+    //{
+      //  originalText = targetText.text;
+   // }
 
     void Update()
     {
+        if (targetText == null) return;
+        if (UIExposureController.Instance == null) return;
+
         float t = UIExposureController.Instance.HighIntensity;
+
+        liveText = targetText.text;
 
         if (t <= 0f)
         {
-            targetText.text = originalText;
+            //targetText.text = originalText;
             return;
         }
 
@@ -39,17 +45,31 @@ public class UITextScrambler : MonoBehaviour
 
             StringBuilder sb = new StringBuilder();
 
-            foreach (char c in originalText)
+            foreach (char c in liveText)
             {
+                // preserve spaces
+                if (c == ' ')
+                {
+                    sb.Append(' ');
+                    continue;
+                }
+
+                // corrupt some characters
                 if (Random.value < t * 0.5f)
                 {
-                    sb.Append(corruptionChars[Random.Range(0, corruptionChars.Length)]);
+                    sb.Append(
+                        corruptionChars[
+                            Random.Range(0, corruptionChars.Length)
+                        ]
+                    );
                 }
                 else
                 {
                     sb.Append(c);
                 }
             }
+
+         
 
             targetText.text = sb.ToString();
         }

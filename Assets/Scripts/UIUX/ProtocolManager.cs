@@ -38,7 +38,11 @@ public class ProtocolManager : MonoBehaviour
 
     private void Start()
     {
-        GenerateRandomProtocol();
+        if (randomizeProtocol)
+        {
+            GenerateRandomProtocol();
+        }
+       // GenerateRandomProtocol();
     }
 
     void GenerateRandomProtocol()
