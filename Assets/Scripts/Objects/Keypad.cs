@@ -12,7 +12,7 @@ public class Keypad : MonoBehaviour
     public Animator doorAnimator;
 
     public TMP_Text displayText;
-    public string password = "12345";
+    public string password; // = "12345";
 
     public AudioSource buttonSound;
     public AudioSource correctSound;
@@ -28,6 +28,18 @@ public class Keypad : MonoBehaviour
     {
         keypadUI.SetActive(false);
         Debug.Log("Keypad script started");
+
+        if (ProtocolManager.Instance != null && ClueInventorySystem.Instance != null)
+        {
+            password = GeneratePassword(ClueInventorySystem.Instance.GetCollectedClueAnswers());
+            Debug.Log("Generated Password: " + password);
+        }
+        else
+        {
+            Debug.LogError("ProtocolManager.Instance or ClueInventorySystem.Instance is null. Cannot generate password.");
+            password = "ERROR"; // Fallback
+        }
+
     }
 
     private void Update()
@@ -41,7 +53,7 @@ public class Keypad : MonoBehaviour
             Cursor.visible = true;
         }
 
-       // ScoreManager.Instance.wrongCodeAttempts++;
+       
     }
 
     public void Number(int number)
@@ -56,6 +68,10 @@ public class Keypad : MonoBehaviour
 
     public void Execute()
     {
+        password = GeneratePassword(
+         ClueInventorySystem.Instance.GetCollectedClueAnswers()
+        );
+
         if (displayText.text == password)
         {
             displayText.text = "OPEN";
@@ -64,10 +80,24 @@ public class Keypad : MonoBehaviour
             if (correctSound != null)
                 correctSound.Play();
 
-            linkedDoor.OpenDoor();
+            if (linkedDoor != null)
+            {
+                linkedDoor.OpenDoor();
+            }
+            else
+            {
+                Debug.LogWarning("Linked Door is not assigned on Keypad.");
+            }
 
-            GameSessionTracker.Instance.SuccessfulKeypadInput();
-            GameSessionTracker.Instance.successfulKeypadInputs++;
+            if (GameSessionTracker.Instance != null)
+            {
+                GameSessionTracker.Instance.SuccessfulKeypadInput();
+            }
+
+            //linkedDoor.OpenDoor();
+
+           // GameSessionTracker.Instance.SuccessfulKeypadInput();
+            //GameSessionTracker.Instance.successfulKeypadInputs++;
 
         }
         else
@@ -77,7 +107,7 @@ public class Keypad : MonoBehaviour
             if (wrongSound != null)
                 wrongSound.Play();
 
-           // GameSessionTracker.Instance.IncorrectKeypadInput();
+           
             if (GameSessionTracker.Instance != null)
             {
                 GameSessionTracker.Instance.IncorrectKeypadInput();
@@ -108,6 +138,37 @@ public class Keypad : MonoBehaviour
         Cursor.visible = false;
     }
 
-   
-   
+    // Modified to accept clue answers from ClueInventorySystem
+    string GeneratePassword(int[] clueAnswers)
+    {
+        string result = "";
+
+        foreach (int answer in clueAnswers)
+        {
+            int modified = answer;
+
+            switch (ProtocolManager.Instance.currentProtocol)
+            {
+                case ProtocolManager.ProtocolType.AddTwo:
+                    modified += 2;
+                    break;
+                case ProtocolManager.ProtocolType.MultiplyTwo:
+                    modified *= 2;
+                    break;
+                    // Standard protocol does not modify the digit
+            }
+
+            result += modified.ToString();
+        }
+
+        if (ProtocolManager.Instance.currentProtocol ==
+            ProtocolManager.ProtocolType.ReverseOrder)
+        {
+            char[] chars = result.ToCharArray();
+            System.Array.Reverse(chars);
+            result = new string(chars);
+        }
+
+        return result;
+    }
 }

@@ -260,14 +260,14 @@ public class NotesSystem : MonoBehaviour
     private void UpdateUI()
     {
         UI.PreviousButton.interactable = !(currentPage == 0);
-        //UI.NextButton.interactable = !(currentPage == activeNote.Pages.Length);
+        
         UI.NextButton.interactable = currentPage < activeNote.Pages.Length - 1;
 
         var useSubscript = ActivePage.Type == PageType.Texture && ActivePage.UseSubscript;
         UI.ReadButton.alpha = useSubscript ? (readSubscript ? .5f : 1f) : 0f;
         UpdateCanvasGroup(readSubscript, UI.SubscriptGroup);
 
-       // UI.Lines.enabled = ActivePage.DisplayLines;
+       
 
     }
 
@@ -328,7 +328,7 @@ public class NotesSystem : MonoBehaviour
 
     private void ClearList ()
     {
-        //throw new NotImplementedException();
+       
         foreach (var note in noteDatas)
         {
             Destroy(note.gameObject);

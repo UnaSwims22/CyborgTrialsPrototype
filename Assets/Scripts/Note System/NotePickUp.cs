@@ -10,11 +10,8 @@ public class NotePickUp : MonoBehaviour, IInteractable
     [SerializeField] bool autoDisplay = false;
     [SerializeField] bool add = true;
 
-    //[Header("Info Content")]
-    ///[SerializeField] private string infoTitle = "Point of Interest";
-    //[TextArea(3, 6)]
-    //[SerializeField] private string infoBody = "Enter your information text here.";
-
+    [Header("Clue Answer")]
+    [SerializeField] private int clueAnswer;
 
     [Header("Clue Settings")]
     [SerializeField] private bool isClue = false;
@@ -61,7 +58,8 @@ public class NotePickUp : MonoBehaviour, IInteractable
             if (isClue)
             {
                 InfoUIManager.Instance.AddClue();
-
+                ClueInventorySystem.Instance.AddClueAnswer(clueAnswer);
+                
                 Debug.Log("[Clue] Collected!");
             }
 
