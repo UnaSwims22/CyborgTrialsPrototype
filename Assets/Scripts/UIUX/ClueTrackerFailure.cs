@@ -21,14 +21,14 @@ public class ClueTrackerFailure : MonoBehaviour
         }
 
         // Late stage: UI completely cuts out
-        if (t > 0.75f)
-        {
-            forcedOff = true;
-        }
+       // if (t > 0.75f)
+        //{
+        //    forcedOff = true;
+        //}
 
-        if (forcedOff)
-        {
-            group.alpha = Mathf.Lerp(group.alpha, 0f, Time.deltaTime * 2f);
-        }
+        //if (forcedOff)
+        //{
+        //    group.alpha = Mathf.Lerp(group.alpha, 0f, Time.deltaTime * 2f);
+        //}
     }
 }

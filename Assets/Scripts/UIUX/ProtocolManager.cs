@@ -4,6 +4,15 @@ public class ProtocolManager : MonoBehaviour
 {
     public static ProtocolManager Instance;
 
+    [Header("Debug")]
+    public bool randomizeProtocol = true;
+
+    [Header("Session")]
+    public string protocolName;
+
+    [TextArea]
+    public string protocolDescription;
+
     public enum ProtocolType
     {
         Standard,

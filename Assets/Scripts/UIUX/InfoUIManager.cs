@@ -19,7 +19,7 @@ public class InfoUIManager : MonoBehaviour
     [SerializeField] private int totalBlueClues = 2;
     private int currentBlueClues = 0;
 
-    [Header("Blue Clues")]
+    [Header("Green Clues")]
     [SerializeField] private TextMeshProUGUI greenClueText;
     [SerializeField] private int totalGreenClues = 2;
     private int currentGreenClues = 0;
@@ -105,8 +105,6 @@ public class InfoUIManager : MonoBehaviour
     public void AddBlueClue()
     {
         
-        
-
         currentBlueClues++;
 
         Debug.Log("BLUE clue count is now: " + currentBlueClues);

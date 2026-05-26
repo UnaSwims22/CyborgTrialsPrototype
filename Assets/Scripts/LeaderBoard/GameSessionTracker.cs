@@ -66,11 +66,13 @@ public class GameSessionTracker : MonoBehaviour
     public void IncorrectKeypadInput()
     {
         incorrectKeypadInputs++;
+        Debug.Log($"Incorrect Keypad Input! Total: {incorrectKeypadInputs}");
     }
 
     public void SuccessfulKeypadInput()
     {
         successfulKeypadInputs++;
+        Debug.Log($"Successful Keypad Input! Total: {successfulKeypadInputs}");
     }
 
 

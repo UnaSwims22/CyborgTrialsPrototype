@@ -28,18 +28,23 @@ public class UIManager : MonoBehaviour
     {
         for (int i = 0; i < bolts.Length; i++)
         {
+            if (bolts[i] == null)
+                continue;
+
             bolts[i].enabled = i < amount;
+
+           // bolts[i].enabled = i < amount;
         }
     }
 
     //Write a function that makes sure that only one bolt is used up when orb recharges
 
-    //public void ShowClue(ClueData clue)
-   // {
-      //  InfoUIManager.Instance.ShowInfo(
-      // "Clue Found",
-       //clue.riddleText
+   // public void ShowClue(ClueData clue)
+  //  {
+    ///   InfoUIManager.Instance.ShowInfo(
+    //   "Clue Found",
+     //  clue.riddleText
   // );
-   // }
+    //}
     
 }

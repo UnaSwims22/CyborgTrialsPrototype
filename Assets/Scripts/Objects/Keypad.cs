@@ -12,7 +12,7 @@ public class Keypad : MonoBehaviour
     public Animator doorAnimator;
 
     public TMP_Text displayText;
-    public string password; // = "12345";
+    private string password; //= "12345";
 
     public AudioSource buttonSound;
     public AudioSource correctSound;

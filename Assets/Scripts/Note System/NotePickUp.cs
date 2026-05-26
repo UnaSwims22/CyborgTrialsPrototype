@@ -10,8 +10,8 @@ public class NotePickUp : MonoBehaviour, IInteractable
     [SerializeField] bool autoDisplay = false;
     [SerializeField] bool add = true;
 
-    [Header("Clue Answer")]
-    [SerializeField] private int clueAnswer;
+    [Header("Puzzle Data")]
+    [SerializeField] private int clueAnswer =0;
 
     [Header("Clue Settings")]
     [SerializeField] private bool isClue = false;
@@ -22,15 +22,9 @@ public class NotePickUp : MonoBehaviour, IInteractable
     [SerializeField] private string playerTag = "Player";
     [SerializeField] private TriggerMode triggerMode = TriggerMode.OnEnter;
 
-   // void Update()
-    //{
-    //    ScoreManager.Instance.cluesCollected++;
-    //}
 
     public void Interact()
     {
-       
-        
         Debug.Log("Picked up note!");
 
         if (!hasTriggered)
@@ -51,7 +45,6 @@ public class NotePickUp : MonoBehaviour, IInteractable
                     InfoUIManager.Instance.AddGreenClue();
                     Debug.Log("Collected BLUE clue");
                     break;
-
 
             }
 
