@@ -28,28 +28,28 @@ public class ProtocolManager : MonoBehaviour
         if (Instance == null)
         {
             Instance = this;
-            DontDestroyOnLoad(gameObject); // Persist across scenes if needed
+            DontDestroyOnLoad(gameObject);
+
+            if (randomizeProtocol)
+            {
+                GenerateRandomProtocol();
+            }
         }
         else
         {
             Destroy(gameObject);
         }
+        Debug.Log("PROTOCOL MANAGER INSTANCE: " + gameObject.name);
+        Debug.Log("GENERATED PROTOCOL: " + currentProtocol);
+
     }
 
-    private void Start()
-    {
-        if (randomizeProtocol)
-        {
-            GenerateRandomProtocol();
-        }
-       // GenerateRandomProtocol();
-    }
 
     void GenerateRandomProtocol()
     {
         // Exclude Standard for now to ensure a protocol is always applied
         // Adjust Random.Range max value if more protocols are added or if Standard should be included
-        currentProtocol = (ProtocolType)Random.Range(1, System.Enum.GetValues(typeof(ProtocolType)).Length);
+        currentProtocol = (ProtocolType)Random.Range(0, System.Enum.GetValues(typeof(ProtocolType)).Length);
 
         Debug.Log("Current Protocol: " + currentProtocol);
     }

@@ -18,53 +18,60 @@ public class ProtocolTerminalUI : MonoBehaviour
 
     void UpdateDisplay()
     {
-        if (ProtocolManager.Instance != null)
+        if (ProtocolManager.Instance == null)
         {
-            protocolNameText.text = "VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\n" + ProtocolManager.Instance.GetProtocolDescription();
-        }
-        else
-        {
-            protocolNameText.text = "VORTEX SECURITY SYSTEM\n\nERROR: PROTOCOL MANAGER NOT FOUND";
-            Debug.LogError("ProtocolManager.Instance is null. Make sure ProtocolManager is in the scene and initialized.");
+            protocolNameText.text =
+                "VORTEX SECURITY SYSTEM\n\nERROR: PROTOCOL MANAGER NOT FOUND";
+
+            Debug.LogError("ProtocolManager.Instance is null.");
+            return;
         }
 
         switch (ProtocolManager.Instance.currentProtocol)
         {
             case ProtocolManager.ProtocolType.Standard:
+
                 protocolNameText.text =
-                //"VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\nSTANDARD";
-                "\n\nSESSION ENCRYPTION:\nSTANDARD";
+                    "VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\nSTANDARD";
+
                 protocolDescriptionText.text =
-                   "All clue outputs remain unchanged.";
+                    "All clue outputs remain unchanged.";
+
                 break;
-                
 
             case ProtocolManager.ProtocolType.AddTwo:
+
                 protocolNameText.text =
-                   // "VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\n+2 SHIFT";
-                  "\n\nSESSION ENCRYPTION:\n + 2 SHIFT";
+                    "VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\n+2 SHIFT";
+
                 protocolDescriptionText.text =
-                   "All clue outputs are increased by 2.";
+                    "All clue outputs are increased by 2.";
+
                 break;
 
             case ProtocolManager.ProtocolType.ReverseOrder:
+
                 protocolNameText.text =
-                    //"VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\nREVERSE ORDER";
-                    "\n\nSESSION ENCRYPTION:\nREVERSE ORDER";
+                    "VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\nREVERSE ORDER";
+
                 protocolDescriptionText.text =
-                   "All collected clue outputs must be entered in reverse sequence.";
+                    "All collected clue outputs must be entered in reverse sequence.";
+
                 break;
 
             case ProtocolManager.ProtocolType.MultiplyTwo:
 
                 protocolNameText.text =
-                    //"VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\nMULTIPLY x2";
-                    "\n\nSESSION ENCRYPTION:\nMULTIPLY x2";
+                    "VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\nMULTIPLY x2";
+
                 protocolDescriptionText.text =
                     "All clue outputs are doubled.";
-                break;
 
+                break;
         }
+
+        Debug.Log("UI DISPLAYING PROTOCOL: " +
+            ProtocolManager.Instance.currentProtocol);
     }
 
 }

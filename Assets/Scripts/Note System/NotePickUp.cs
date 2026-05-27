@@ -11,7 +11,7 @@ public class NotePickUp : MonoBehaviour, IInteractable
     [SerializeField] bool add = true;
 
     [Header("Puzzle Data")]
-    [SerializeField] private int clueAnswer =0;
+    [SerializeField] private int clueAnswer = 0;
 
     [Header("Clue Settings")]
     [SerializeField] private bool isClue = false;
