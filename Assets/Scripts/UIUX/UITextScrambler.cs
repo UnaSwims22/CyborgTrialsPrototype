@@ -15,12 +15,19 @@ public class UITextScrambler : MonoBehaviour
     public float scrambleSpeed = 0.05f;
 
     private float timer;
-    private string liveText;
+    private string _originalText;
 
-    //void Start()
-    //{
-      //  originalText = targetText.text;
-   // }
+    void Start()
+    {
+        // Store the initial text when the script starts
+        if (targetText != null)
+        {
+            _originalText = targetText.text;
+        }
+
+        //  originalText = targetText.text;
+    }
+
 
     void Update()
     {
@@ -29,12 +36,20 @@ public class UITextScrambler : MonoBehaviour
 
         float t = UIExposureController.Instance.HighIntensity;
 
-        liveText = targetText.text;
+        
+        
+        //liveText = targetText.text;
 
         if (t <= 0f)
         {
-            //targetText.text = originalText;
+            if (targetText.text != _originalText)
+            {
+                targetText.text = _originalText;
+            }
             return;
+
+            //targetText.text = originalText;
+            //return;
         }
 
         timer += Time.deltaTime;
@@ -45,7 +60,7 @@ public class UITextScrambler : MonoBehaviour
 
             StringBuilder sb = new StringBuilder();
 
-            foreach (char c in liveText)
+            foreach (char c in _originalText)
             {
                 // preserve spaces
                 if (c == ' ')
