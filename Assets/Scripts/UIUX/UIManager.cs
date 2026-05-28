@@ -38,13 +38,18 @@ public class UIManager : MonoBehaviour
     }
 
     //Write a function that makes sure that only one bolt is used up when orb recharges
+    // The LightOrb script (or whichever script handles the recharge logic) is responsible
+    // for decrementing the 'powerUps' count by one before calling UIManager.UpdateBolts(powerUps).
+    // This function then correctly reflects that single bolt usage visually.
 
-   // public void ShowClue(ClueData clue)
-  //  {
+
+
+    // public void ShowClue(ClueData clue)
+    //  {
     ///   InfoUIManager.Instance.ShowInfo(
     //   "Clue Found",
-     //  clue.riddleText
-  // );
+    //  clue.riddleText
+    // );
     //}
-    
+
 }

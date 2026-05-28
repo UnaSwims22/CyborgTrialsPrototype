@@ -13,8 +13,8 @@ public class LightOrb : MonoBehaviour
 
     [Header("Battery Settings")]
     [SerializeField] private float maxLifetime = 100f;
-    [SerializeField] private float currentLifetime = 100f;
-    [SerializeField] private int powerUps = 0;
+    [SerializeField] public float currentLifetime = 100f;
+    [SerializeField] public int powerUps = 0;
     public float rechargeAmount = 50f;
 
     [Header("Audio")]

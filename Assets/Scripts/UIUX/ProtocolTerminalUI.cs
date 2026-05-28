@@ -32,7 +32,7 @@ public class ProtocolTerminalUI : MonoBehaviour
             case ProtocolManager.ProtocolType.Standard:
 
                 protocolNameText.text =
-                    "VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\nSTANDARD";
+                    "/SESSION ENCRYPTION:/nSTANDARD";
 
                 protocolDescriptionText.text =
                     "All clue outputs remain unchanged.";
@@ -42,7 +42,7 @@ public class ProtocolTerminalUI : MonoBehaviour
             case ProtocolManager.ProtocolType.AddTwo:
 
                 protocolNameText.text =
-                    "VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\n+2 SHIFT";
+                    "/SESSION ENCRYPTION:/n+2 SHIFT";
 
                 protocolDescriptionText.text =
                     "All clue outputs are increased by 2.";
@@ -52,7 +52,7 @@ public class ProtocolTerminalUI : MonoBehaviour
             case ProtocolManager.ProtocolType.ReverseOrder:
 
                 protocolNameText.text =
-                    "VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\nREVERSE ORDER";
+                    "/SESSION ENCRYPTION:/nREVERSE ORDER";
 
                 protocolDescriptionText.text =
                     "All collected clue outputs must be entered in reverse sequence.";
@@ -62,7 +62,7 @@ public class ProtocolTerminalUI : MonoBehaviour
             case ProtocolManager.ProtocolType.MultiplyTwo:
 
                 protocolNameText.text =
-                    "VORTEX SECURITY SYSTEM\n\nSESSION ENCRYPTION:\nMULTIPLY x2";
+                    "/SESSION ENCRYPTION:/nMULTIPLY x2";
 
                 protocolDescriptionText.text =
                     "All clue outputs are doubled.";

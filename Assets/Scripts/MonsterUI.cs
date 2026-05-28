@@ -25,10 +25,6 @@ public class MonsterUI : MonoBehaviour
     public float repelDuration = 2f;
     private float repelTimer;
 
-    
-
-   
-
     void Start()
     {
         agent = GetComponent<NavMeshAgent>();
