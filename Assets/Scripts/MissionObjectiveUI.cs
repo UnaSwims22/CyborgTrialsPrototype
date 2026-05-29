@@ -5,33 +5,52 @@ using TMPro;
 
 public class MissionObjectiveUI : MonoBehaviour
 {
+    [Header("UI")]
     public GameObject objectivePanel;
     public TextMeshProUGUI objectiveText;
+
+    [Header("Animation")]
     public float displayDuration = 3f;
     public float fadeDuration = 1f;
 
     private Coroutine displayCoroutine;
 
-    void Start()
+    private CanvasGroup canvasGroup;
+
+    private void Awake()
     {
-        if (objectivePanel != null) objectivePanel.SetActive(false);
+        canvasGroup = objectivePanel.GetComponent<CanvasGroup>();
+
+        if (canvasGroup == null)
+        {
+            canvasGroup = objectivePanel.AddComponent<CanvasGroup>();
+        }
+
+       // if (objectivePanel != null) objectivePanel.SetActive(false);
+    }
+
+    private void Start()
+    {
+        objectivePanel.SetActive(false);
     }
 
     public void ShowObjective(string objective)
     {
-        if (objectivePanel == null || objectiveText == null) return;
-
+        // if (objectivePanel == null || objectiveText == null) return;
         if (displayCoroutine != null)
         {
             StopCoroutine(displayCoroutine);
         }
-        displayCoroutine = StartCoroutine(DisplayAndFade(objective));
+        displayCoroutine = StartCoroutine(DisplayObjective(objective));
     }
 
-    private IEnumerator DisplayAndFade(string objective)
+    private IEnumerator DisplayObjective(string objective)
     {
         objectiveText.text = objective;
         objectivePanel.SetActive(true);
+       
+        
+        
         CanvasGroup canvasGroup = objectivePanel.GetComponent<CanvasGroup>();
         if (canvasGroup == null)
         {
