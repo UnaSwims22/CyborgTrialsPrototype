@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using UnityEditor.IMGUI.Controls;
 
 public class TutorialObjectiveManager : MonoBehaviour
 {
@@ -8,27 +9,44 @@ public class TutorialObjectiveManager : MonoBehaviour
     [System.Serializable]
     public class Objective
     {
-        [TextArea]
+        [Header("Objective")]
+        [TextArea(2,4)]
         public string objectiveText;
 
-        [TextArea]
-        public string subtitleText;
+        //[TextArea]
+        //public string subtitleText;
 
-        public AudioClip narrationClip;
+        [Header("Mission Director Dialogue")]
+        public DialogueLine dialogue;
+
+        //public AudioClip narrationClip;
     }
 
+   // [SerializeField] private DialogueLine introDialogue;
+
     [Header("References")]
-    public MissionObjectiveUI missionObjectiveUI;
-    public MissionDirectorNarration narrationSystem;
+    [SerializeField] private MissionObjectiveUI missionObjectiveUI;
+    [SerializeField] private MissionDirectorNarration narrationSystem;
 
     [Header("Objectives")]
-    public List<Objective> objectives = new List<Objective>();
-
+    [SerializeField] public List<Objective> objectives = new List<Objective>();
+    
     private int currentObjectiveIndex = -1;
+
+    public int CurrentObjectiveIndex => currentObjectiveIndex;
 
     private void Awake()
     {
-        Instance = this;
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+
+       // Instance = this;
     }
 
     void Start()
@@ -48,32 +66,59 @@ public class TutorialObjectiveManager : MonoBehaviour
 
         if (currentObjectiveIndex >= objectives.Count)
         {
+            TutorialCompleted();
             Debug.Log("Tutorial Complete!");
             return;
         }
 
-        Objective current = objectives[currentObjectiveIndex];
+        Objective currentObjective = 
+            objectives[currentObjectiveIndex];
 
         // Show UI objective
         if (missionObjectiveUI != null)
         {
-            missionObjectiveUI.ShowObjective(current.objectiveText);
-        }
-
-        // Play narration
-        if (narrationSystem != null)
-        {
-            narrationSystem.PlayNarration(
-                current.narrationClip,
-                current.subtitleText
+            missionObjectiveUI.ShowObjective(
+                currentObjective.objectiveText
             );
         }
 
-        Debug.Log("New Objective: " + current.objectiveText);
+        // Play narration
+        if (narrationSystem != null &&
+            currentObjective.dialogue != null)
+        {
+            narrationSystem.PlayDialogue(
+                currentObjective.dialogue
+                //current.narrationClip,
+                //current.subtitleText
+            );
+        }
+
+        Debug.Log(
+            $"Tutorial Objective {currentObjectiveIndex}: {currentObjective.objectiveText}"
+            ); //}\" New Objective: " + current.objectiveText);
+
+        //AdvancedObjective();
     }
 
-    public int CurrentObjectiveIndex()
+    public bool IsCurrentObjective(int index)
     {
-        return currentObjectiveIndex;
+        return currentObjectiveIndex == index;
     }
+
+    private void TutorialCompleted()
+    {
+        Debug.Log("Tutorial Complete!");
+
+        if (missionObjectiveUI != null)
+        {
+            missionObjectiveUI.ShowObjective(
+                "Training Complete - Enter the Portal"
+            );
+        }
+    }
+
+    //public int CurrentObjectiveIndex()
+    //{
+      //  return currentObjectiveIndex;
+    //}
 }

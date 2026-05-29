@@ -10,10 +10,12 @@ public class MissionDirectorNarration : MonoBehaviour
 
     [Header("Subtitles")]
     public GameObject subtitlePanel;
+    public TextMeshProUGUI speakerText;
     public TextMeshProUGUI subtitleText;
 
-    public float subtitleDisplayDuration = 3f;
+    // public float subtitleDisplayDuration = 3f;
 
+    private Coroutine currentRoutine;
     private Coroutine subtitleCoroutine;
     private Coroutine subtitleRoutine;
 
@@ -23,14 +25,23 @@ public class MissionDirectorNarration : MonoBehaviour
         subtitlePanel.SetActive(false);
     }
 
-    public void PlayNarration(AudioClip clip, string subtitle)
+    public void PlayDialogue(DialogueLine line)
     {
-        if (subtitleRoutine != null)
+        if (currentRoutine != null)
         {
-            StopCoroutine(subtitleRoutine);
+            StopCoroutine(currentRoutine);
         }
 
-        subtitleRoutine = StartCoroutine(PlayNarrationRoutine(clip, subtitle));
+        currentRoutine = StartCoroutine(
+            PlayDialogueRoutine(line));
+    }
+
+       // if (subtitleRoutine != null)
+       // {
+          //  StopCoroutine(subtitleRoutine);
+       // }
+
+       // subtitleRoutine = StartCoroutine(PlayNarrationRoutine(clip, subtitle));
 
        // if (narrationAudioSource == null) return;
 
@@ -45,39 +56,55 @@ public class MissionDirectorNarration : MonoBehaviour
            // }
            // subtitleCoroutine = StartCoroutine(DisplaySubtitle(subtitle, clip.length));
        // }
-    }
+    //}
 
-    private IEnumerator PlayNarrationRoutine(AudioClip clip, string subtitle)
+    //private IEnumerator PlayNarrationRoutine(AudioClip clip, string subtitle)
+    //{
+       // subtitlePanel.SetActive(true);
+
+        //subtitleText.text = subtitle;
+
+        //narrationAudioSource.clip = clip;
+        //narrationAudioSource.Play();
+
+        //yield return new WaitForSeconds(clip.length);
+    
+       // subtitlePanel.SetActive(false);
+    //}
+
+    IEnumerator PlayDialogueRoutine(DialogueLine line)
     {
         subtitlePanel.SetActive(true);
 
-        subtitleText.text = subtitle;
+        speakerText.text = line.speakerName;
+        subtitleText.text = line.subtitleText;
 
-        narrationAudioSource.clip = clip;
+        narrationAudioSource.clip = line.voiceClip;
         narrationAudioSource.Play();
 
-        yield return new WaitForSeconds(clip.length);
+        yield return new WaitForSeconds(
+            line.voiceClip.length);
 
         subtitlePanel.SetActive(false);
     }
 
-    private IEnumerator DisplaySubtitle(string subtitle, float audioLength)
-    {
-        subtitleText.text = subtitle;
-        subtitleText.gameObject.SetActive(true);
+   // private IEnumerator DisplaySubtitle(string subtitle, float audioLength)
+   // {
+     //   subtitleText.text = subtitle;
+     //   subtitleText.gameObject.SetActive(true);
 
-        yield return new WaitForSeconds(audioLength);
+      //  yield return new WaitForSeconds(audioLength);
 
-        subtitleText.gameObject.SetActive(false);
-    }
+       // subtitleText.gameObject.SetActive(false);
+   // }
 
-    public void StopNarration()
-    {
-        if (narrationAudioSource != null) narrationAudioSource.Stop();
-        if (subtitleCoroutine != null)
-        {
-            StopCoroutine(subtitleCoroutine);
-            subtitleText.gameObject.SetActive(false);
-        }
-    }
+   // public void StopNarration()
+   // {
+   //     if (narrationAudioSource != null) narrationAudioSource.Stop();
+    //    if (subtitleCoroutine != null)
+     //   {
+      //      StopCoroutine(subtitleCoroutine);
+      //      subtitleText.gameObject.SetActive(false);
+      //  }
+   // }
 }

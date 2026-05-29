@@ -1,3 +1,7 @@
+
+//Assets\Scripts\TutorialObjectiveTrigger.cs(18,47): error CS1955: Non-invocable member 'TutorialObjectiveManager.CurrentObjectiveIndex' cannot be used like a method.
+
+
 using UnityEngine;
 
 public class TutorialObjectiveTrigger : MonoBehaviour
@@ -15,7 +19,7 @@ public class TutorialObjectiveTrigger : MonoBehaviour
 
         if (!other.CompareTag("Player")) return;
 
-        if (TutorialObjectiveManager.Instance.CurrentObjectiveIndex() == requiredObjectiveIndex)
+        if (TutorialObjectiveManager.Instance.CurrentObjectiveIndex == requiredObjectiveIndex)
         {
             triggered = true;
 
