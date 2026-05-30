@@ -8,5 +8,7 @@ public class DialogueLine
     [TextArea(2, 4)]
     public string subtitleText;
 
-    public AudioClip voiceClip;
+    public float subtitleDuration;
+
+    public AudioClip audioClip;
 }

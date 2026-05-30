@@ -14,7 +14,7 @@ public class TutorialNarrationSequence : MonoBehaviour
             narrator.PlayDialogue(line);
 
             yield return new WaitForSeconds(
-                line.voiceClip.length + 0.5f);
+                line.audioClip.length + 0.5f);
         }
     }
 }

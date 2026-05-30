@@ -31,7 +31,9 @@ public class MissionObjectiveUI : MonoBehaviour
 
     private void Start()
     {
-        objectivePanel.SetActive(false);
+        //objectivePanel.SetActive(false);
+        canvasGroup.alpha = 0;
+        canvasGroup.blocksRaycasts = false;
     }
 
     public void ShowObjective(string objective)

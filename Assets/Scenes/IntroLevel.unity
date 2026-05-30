@@ -443,6 +443,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9104116646326749275, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1484682551}
+    - targetCorrespondingSourceObject: {fileID: 9104116646326749275, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1484682555}
   m_SourcePrefab: {fileID: 100100000, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
 --- !u!4 &12965536 stripped
 Transform:
@@ -1068,7 +1071,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2639856785705970774, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
       propertyPath: m_Name
-      value: TriggerZone_Welcome
+      value: TriggerZone_Movement
       objectReference: {fileID: 0}
     - target: {fileID: 4706266052939838289, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
       propertyPath: m_LocalScale.x
@@ -1330,7 +1333,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2639856785705970774, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
       propertyPath: m_Name
-      value: TriggerZone_Intro (2)
+      value: TriggerZone_Light Mechanic
       objectReference: {fileID: 0}
     - target: {fileID: 4706266052939838289, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
       propertyPath: m_LocalScale.x
@@ -1396,6 +1399,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 9104116646326749275, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
       insertIndex: -1
       addedObject: {fileID: 392239348}
+    - targetCorrespondingSourceObject: {fileID: 9104116646326749275, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 392239352}
   m_SourcePrefab: {fileID: 100100000, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
 --- !u!4 &124007666 stripped
 Transform:
@@ -1556,7 +1562,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2701940562608036181, guid: cc1d6053e25b4534598f354abb5efd7f, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4530262105288720156, guid: cc1d6053e25b4534598f354abb5efd7f, type: 3}
       propertyPath: m_UiScaleMode
@@ -7597,14 +7603,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoTitle: 'KEY TIP:'
-  infoBody: 'To access your code clue inventory,
-
-    Press "tab" and click on the
-    note
-
-    you want to access.'
+  infoBody: Press "F" to switch on/off Light Orb, and press "R" to reload the light
+    orb with a collected power up.
   playerTag: Player
   triggerMode: 0
+--- !u!114 &392239352
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 392239346}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0837cdb61e20d4b48a719d8da50e12ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredObjectiveIndex: 3
+  destroyAfterTrigger: 1
 --- !u!1001 &400510190
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -8487,7 +8503,7 @@ RectTransform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 618571662}
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 719625934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -8570,7 +8586,6 @@ GameObject:
   - component: {fileID: 586123889}
   - component: {fileID: 586123888}
   - component: {fileID: 586123891}
-  - component: {fileID: 586123892}
   m_Layer: 5
   m_Name: ObjectivePanel
   m_TagString: Untagged
@@ -8664,22 +8679,6 @@ MonoBehaviour:
   objectiveText: {fileID: 635427700}
   displayDuration: 3
   fadeDuration: 1
---- !u!114 &586123892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 586123886}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 489c19ae62c9e6a43a338d0dbbedab76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  objectivePanel: {fileID: 0}
-  objectiveText: {fileID: 0}
-  displayDuration: 3
-  fadeDuration: 0.5
 --- !u!1001 &612988584
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9130,6 +9129,38 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635427698}
   m_CullTransparentMesh: 1
+--- !u!1 &719625933
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 719625934}
+  m_Layer: 0
+  m_Name: MissionDirectionNarration
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &719625934
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 719625933}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 585.20264, y: 369.1936, z: 345.06052}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 524058204}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &772398320 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4706266052939838289, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
@@ -13163,12 +13194,12 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1042426221}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0837cdb61e20d4b48a719d8da50e12ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  requiredObjectiveIndex: 0
+  requiredObjectiveIndex: 1
   destroyAfterTrigger: 1
 --- !u!43 &1042620905
 Mesh:
@@ -13670,31 +13701,43 @@ MonoBehaviour:
   missionObjectiveUI: {fileID: 586123891}
   narrationSystem: {fileID: 1658172359}
   objectives:
-  - objectiveText: WELCOME TO THE VORTEX MILITARY RECONNAISSANCE DIVISION
-    dialogue:
-      speakerName: MISSION DIRECTOR
-      subtitleText: 
-      voiceClip: {fileID: 0}
-  - objectiveText: MOVEMENT SYSTEMS
-    dialogue:
-      speakerName: MISSION DIRECTOR
-      subtitleText: 'Movement systems online.
+  - objectiveText: 'MOVEMENT SYSTEMS ONLINE
 
-        Use the designated controls
-        to move through the training area.
+      Use the designated controls to
+      move through the training area.'
+    dialogue:
+      speakerName: MISSION DIRECTOR
+      subtitleText: Android Technicians must maintain mobility in unpredictable environments.
+        Complete the mini-obstacle course.
+      subtitleDuration: 0
+      audioClip: {fileID: 0}
+  - objectiveText: 'MOVE THE ORANGE OBJECT
 
 '
-      voiceClip: {fileID: 0}
-  - objectiveText: Move orange objects out of your path
     dialogue:
       speakerName: MISSION DIRECTOR
-      subtitleText: 
-      voiceClip: {fileID: 0}
-  - objectiveText: Collect code clues.
+      subtitleText: Orange objects can be manipulated. Move the obstruction and clear
+        a path forward.
+      subtitleDuration: 0
+      audioClip: {fileID: 0}
+  - objectiveText: COLLECT A CODE CLUE AND OPEN INVENTORY
     dialogue:
       speakerName: MISSION DIRECTOR
-      subtitleText: 
-      voiceClip: {fileID: 0}
+      subtitleText: Reconnaissance units are responsible for collecting mission-critical
+        data. Approach the highlighted code fragment and collect it. Retrieved clues
+        are automatically stored within your mission inventory for later analysis.
+      subtitleDuration: 0
+      audioClip: {fileID: 0}
+  - objectiveText: TEST FUNCTIONALITY OF LIGHT ORB
+    dialogue:
+      speakerName: MISSION DIRECTOR
+      subtitleText: 'The light orb in your chest cavity,  regulates environmental
+        illumination and energy stabilization.
+
+        Warning: prolonged usage
+        will deplete internal charge reserves.'
+      subtitleDuration: 0
+      audioClip: {fileID: 0}
 --- !u!1 &1187850812
 GameObject:
   m_ObjectHideFlags: 0
@@ -14000,6 +14043,73 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &1283031504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1283031506}
+  - component: {fileID: 1283031505}
+  m_Layer: 0
+  m_Name: TutorialNarrationSequence
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1283031505
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283031504}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cf5483aa23e38945bd45d17b430ef8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  narrator: {fileID: 1658172359}
+  introductionLines:
+  - speakerName: 'MISSION DIRECTOR:'
+    subtitleText: Unit A-17, activation sequence complete. Welcome to Vortex Military
+      Reconnaissance Division.
+    subtitleDuration: 0
+    audioClip: {fileID: 8300000, guid: 6635a61b160e6eb4595c07ff4a5f6381, type: 3}
+  - speakerName: 'MISSION DIRECTOR:'
+    subtitleText: You have been selected for deployment as an Android Technician.
+      Your role is to scout hostile environments and gather intelligence before human
+      personnel enter the field.
+    subtitleDuration: 1
+    audioClip: {fileID: 8300000, guid: 4236a1a7e4c422d4b8181db292bbdba6, type: 3}
+  - speakerName: 'MISSION DIRECTOR:'
+    subtitleText: 'Your current assignment: Domain X8 Training simulation. This simulation
+      evaluates core operational readiness before field deployment. '
+    subtitleDuration: 2
+    audioClip: {fileID: 8300000, guid: 21de6cab2d3debe4781cc3982a9a52a9, type: 3}
+  - speakerName: 'MISSION DIRECTOR:'
+    subtitleText: Proceed through all instructional protocols. Non-compliance will
+      result in termination of training cycle
+    subtitleDuration: 3
+    audioClip: {fileID: 8300000, guid: ae0b2f6d36ab8b24cbbdb10b235b22f0, type: 3}
+--- !u!4 &1283031506
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1283031504}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 138.94812, y: 308.65244, z: 260.94962}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1286144966 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 9104116646326749275, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
@@ -14012,7 +14122,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1286144966}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e3e41826a07bb34c823917dfe669b97, type: 3}
   m_Name: 
@@ -14385,6 +14495,10 @@ PrefabInstance:
     - target: {fileID: 2639856785705970774, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
       propertyPath: m_Name
       value: TriggerZone_Movement
+      objectReference: {fileID: 0}
+    - target: {fileID: 2639856785705970774, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4706266052939838289, guid: df39b18d04a32774bbd2f00f55d2e9e6, type: 3}
       propertyPath: m_LocalScale.x
@@ -14855,10 +14969,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoTitle: 'KEY TIP:'
-  infoBody: "You have found a code clue.\nPress \"E\" to collect it \nand add it
-    to your \ncode clue inventory."
+  infoBody: 'Press "E" to collect the code fragment. To analyse the code fragment,
+    press "TAB". '
   playerTag: Player
   triggerMode: 0
+--- !u!114 &1484682555
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1484682549}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0837cdb61e20d4b48a719d8da50e12ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  requiredObjectiveIndex: 2
+  destroyAfterTrigger: 1
 --- !u!114 &1527766492 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6544037703911385159, guid: cc1d6053e25b4534598f354abb5efd7f, type: 3}
@@ -15158,13 +15286,14 @@ GameObject:
   - component: {fileID: 1658172361}
   - component: {fileID: 1658172360}
   - component: {fileID: 1658172359}
+  - component: {fileID: 1658172362}
   m_Layer: 0
   m_Name: MissionDirector
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!114 &1658172359
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -15177,9 +15306,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 65ceb7be63da39b4fb05752d805b2098, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  narrationAudioSource: {fileID: 0}
+  narrationAudioSource: {fileID: 1658172360}
   subtitlePanel: {fileID: 618571661}
-  speakerText: {fileID: 0}
+  speakerText: {fileID: 847657987}
   subtitleText: {fileID: 188092595}
 --- !u!82 &1658172360
 AudioSource:
@@ -15293,6 +15422,21 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1658172362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1658172358}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 474540ec3dc75a64ab9f985712988759, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioSource: {fileID: 0}
+  subtitleText: {fileID: 0}
+  lines: []
 --- !u!1 &1658978002
 GameObject:
   m_ObjectHideFlags: 0
@@ -21906,7 +22050,6 @@ SceneRoots:
   - {fileID: 1445173890}
   - {fileID: 1384028686}
   - {fileID: 1196603683}
-  - {fileID: 524058204}
   - {fileID: 1658172361}
   - {fileID: 1946955661}
   - {fileID: 942979813}
@@ -21914,3 +22057,5 @@ SceneRoots:
   - {fileID: 1694002263}
   - {fileID: 317088170}
   - {fileID: 826918912}
+  - {fileID: 1283031506}
+  - {fileID: 719625934}

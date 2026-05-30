@@ -16,61 +16,48 @@ public class MissionDirectorNarration : MonoBehaviour
     // public float subtitleDisplayDuration = 3f;
 
     private Coroutine currentRoutine;
-    private Coroutine subtitleCoroutine;
-    private Coroutine subtitleRoutine;
+    //private Coroutine subtitleCoroutine;
+    //private Coroutine subtitleRoutine;
+
+    void Awake()
+    {
+        // Ensure system is always active
+        gameObject.SetActive(true);
+    }
+
 
     void Start()
     {
-       // if (subtitleText != null) subtitleText.gameObject.SetActive(false);
-        subtitlePanel.SetActive(false);
+        // if (subtitleText != null) subtitleText.gameObject.SetActive(false);
+
+        if (subtitlePanel != null)
+            subtitlePanel.SetActive(false);
+        //subtitlePanel.SetActive(true);
     }
 
     public void PlayDialogue(DialogueLine line)
     {
-        if (currentRoutine != null)
+        if (!gameObject.activeInHierarchy)
         {
-            StopCoroutine(currentRoutine);
+            Debug.LogWarning("MissionDirector is inactive!");
+            return;
         }
 
-        currentRoutine = StartCoroutine(
-            PlayDialogueRoutine(line));
+        if (currentRoutine != null)
+            StopCoroutine(currentRoutine);
+
+        currentRoutine = StartCoroutine(PlayDialogueRoutine(line));
+
+       // if (currentRoutine != null)
+       // {
+       //     StopCoroutine(currentRoutine);
+       // }
+
+       // currentRoutine = StartCoroutine(
+        //   PlayDialogueRoutine(line));
     }
 
-       // if (subtitleRoutine != null)
-       // {
-          //  StopCoroutine(subtitleRoutine);
-       // }
-
-       // subtitleRoutine = StartCoroutine(PlayNarrationRoutine(clip, subtitle));
-
-       // if (narrationAudioSource == null) return;
-
-       // narrationAudioSource.clip = clip;
-       // narrationAudioSource.Play();
-
-       // if (subtitleText != null && !string.IsNullOrEmpty(subtitle))
-        //{
-           // if (subtitleCoroutine != null)
-           // {
-           //     StopCoroutine(subtitleCoroutine);
-           // }
-           // subtitleCoroutine = StartCoroutine(DisplaySubtitle(subtitle, clip.length));
-       // }
-    //}
-
-    //private IEnumerator PlayNarrationRoutine(AudioClip clip, string subtitle)
-    //{
-       // subtitlePanel.SetActive(true);
-
-        //subtitleText.text = subtitle;
-
-        //narrationAudioSource.clip = clip;
-        //narrationAudioSource.Play();
-
-        //yield return new WaitForSeconds(clip.length);
-    
-       // subtitlePanel.SetActive(false);
-    //}
+  
 
     IEnumerator PlayDialogueRoutine(DialogueLine line)
     {
@@ -79,11 +66,11 @@ public class MissionDirectorNarration : MonoBehaviour
         speakerText.text = line.speakerName;
         subtitleText.text = line.subtitleText;
 
-        narrationAudioSource.clip = line.voiceClip;
+        narrationAudioSource.clip = line.audioClip;
         narrationAudioSource.Play();
 
         yield return new WaitForSeconds(
-            line.voiceClip.length);
+            line.audioClip.length);
 
         subtitlePanel.SetActive(false);
     }
