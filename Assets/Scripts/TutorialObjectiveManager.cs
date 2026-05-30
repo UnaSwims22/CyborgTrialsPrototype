@@ -49,10 +49,7 @@ public class TutorialObjectiveManager : MonoBehaviour
        // Instance = this;
     }
 
-  //  void Start()
-   // {
-      //  StartTutorial();
-    //}
+ 
 
     public void StartTutorial()
     {
@@ -64,6 +61,10 @@ public class TutorialObjectiveManager : MonoBehaviour
     {
         currentObjectiveIndex++;
 
+        Debug.Log(
+       $"ADVANCING TO OBJECTIVE: {currentObjectiveIndex}"
+   );
+
         if (currentObjectiveIndex >= objectives.Count)
         {
             TutorialCompleted();
@@ -73,6 +74,11 @@ public class TutorialObjectiveManager : MonoBehaviour
 
         Objective currentObjective = 
             objectives[currentObjectiveIndex];
+
+        Debug.Log(
+        $"NEW OBJECTIVE: {currentObjective.objectiveText}"
+    );
+
 
         // Show UI objective
         if (missionObjectiveUI != null)

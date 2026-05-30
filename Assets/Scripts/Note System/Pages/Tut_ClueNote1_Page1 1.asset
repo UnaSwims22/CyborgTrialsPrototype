@@ -13,8 +13,14 @@ MonoBehaviour:
   m_Name: Tut_ClueNote1_Page1 1
   m_EditorClassIdentifier: 
   type: 0
-  text: "This is a code clue. They are \nscattered around the maze.\nAnswer the riddle
-    to figure out\nthe keypad passcode. \n\n\n"
+  text: 'CODE CLUE FRAGEMENT:
+
+
+    Code clue fragments must be decrypted to reveal
+    a numeric code.
+
+
+'
   texture: {fileID: 21300000, guid: fe28bf42f38b7c44d8174dffa2650480, type: 3}
   useSubscript: 1
   displayLines: 1

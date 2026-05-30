@@ -13,12 +13,8 @@ public class MissionDirectorNarration : MonoBehaviour
     public TextMeshProUGUI speakerText;
     public TextMeshProUGUI subtitleText;
 
-    // public float subtitleDisplayDuration = 3f;
-
     private Coroutine currentRoutine;
-    //private Coroutine subtitleCoroutine;
-    //private Coroutine subtitleRoutine;
-
+    
     void Awake()
     {
         // Ensure system is always active
@@ -28,18 +24,17 @@ public class MissionDirectorNarration : MonoBehaviour
     }
 
 
-    void Start()
-    {
+    //void Start()
+   // {
         // if (subtitleText != null) subtitleText.gameObject.SetActive(false);
 
         //if (subtitlePanel != null)
            // subtitlePanel.SetActive(false);
         //subtitlePanel.SetActive(true);
-    }
+   // }
 
     public void PlayDialogue(DialogueLine line)
     {
-
 
         Debug.Log("PLAYING: " + line.subtitleText);
 
@@ -52,7 +47,7 @@ public class MissionDirectorNarration : MonoBehaviour
         if (currentRoutine != null)
             StopCoroutine(currentRoutine);
 
-        currentRoutine = StartCoroutine(PlayDialogueRoutine(line));
+       currentRoutine = StartCoroutine(PlayDialogueRoutine(line));
 
        // if (currentRoutine != null)
        // {

@@ -15,4 +15,3 @@ MonoBehaviour:
   label: Clue01
   pages:
   - {fileID: 11400000, guid: 6305bf30e9d4b494ca0dd4675d758740, type: 2}
-  - {fileID: 11400000, guid: 26c645ecf1e24e7479cd586ad00e1c96, type: 2}

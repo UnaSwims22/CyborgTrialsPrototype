@@ -82,7 +82,7 @@ namespace StarterAssets
 
         private bool _isCrouching;
 
-       public bool CanMove = true;
+        public bool CanMove { get; set; } = true;
 
         [Header("Ceiling Check")]
         public float CeilingCheckDistance = 1.4f;
@@ -124,9 +124,7 @@ namespace StarterAssets
 
         private bool _hasAnimator;
 
-       // private CharacterController controller;
-      //  private float verticalVelocity;
-       // private float gravity = -9.81f;
+
 
         private bool IsCurrentDeviceMouse
         {
@@ -149,7 +147,7 @@ namespace StarterAssets
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
 
-            //controller = GetComponent<CharacterController>();
+            
         }
 
         private void Start()
@@ -181,23 +179,10 @@ namespace StarterAssets
             Move();
             HandleCrouch();
 
-            // Apply gravity
-            //if (!controller.isGrounded)
-            //    verticalVelocity += gravity * Time.deltaTime;
-           // else if (verticalVelocity < 0)
-             //   verticalVelocity = 0f;
-
-           // Vector3 move = Vector3.zero;
-           // move.y = verticalVelocity;
-
-            // Other movement code here...
-            //controller.Move(move * Time.deltaTime);
+            
         }
 
-       // public void SetVerticalVelocity(float force)
-        //{
-        //    verticalVelocity = force;
-        //}
+      
 
         private void LateUpdate()
         {
@@ -259,17 +244,17 @@ namespace StarterAssets
 
         private void Move()
         {
-           if (!CanMove)
-           {
-               _input.move = Vector2.zero;
-
+            // If movement is disabled, set input to zero and return
+            if (!CanMove)
+            {
+                _input.move = Vector2.zero;
                 if (_hasAnimator)
                 {
-                    _animator.SetFloat(_animIDGrounded, 0);
+                    _animator.SetFloat(_animIDSpeed, 0f);
+                    _animator.SetFloat(_animIDMotionSpeed, 0f);
                 }
-
                 return;
-           }
+            }
 
 
             float targetSpeed;

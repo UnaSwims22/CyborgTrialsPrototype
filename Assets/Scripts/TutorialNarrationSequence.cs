@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using StarterAssets;
+using UnityEngine.InputSystem;
 
 public class TutorialNarrationSequence : MonoBehaviour
 {
@@ -8,13 +9,18 @@ public class TutorialNarrationSequence : MonoBehaviour
 
     public DialogueLine[] introductionLines;
 
-    //public ThirdPersonController playerController;
+    public PlayerInput playerInput;
+
+    // public ThirdPersonController playerController;
 
     private IEnumerator Start()
     {
-        yield return null;
-        
+        //yield return null;
+
         //playerController.CanMove = false;
+
+        // Disable player controls
+        playerInput.enabled = false;
 
         foreach (DialogueLine line in introductionLines)
         {
@@ -37,7 +43,12 @@ public class TutorialNarrationSequence : MonoBehaviour
         
         Debug.Log("INTRO FINISHED");
         //Debug.Log("Starting tutorial...");
+        // Re-enable controls
+        playerInput.enabled = true;
+
         TutorialObjectiveManager.Instance.StartTutorial();
         //playerController.CanMove = true;
+
+
     }
 }
