@@ -23,6 +23,8 @@ public class MissionDirectorNarration : MonoBehaviour
     {
         // Ensure system is always active
         gameObject.SetActive(true);
+        if (subtitlePanel != null)
+            subtitlePanel.SetActive(false);
     }
 
 
@@ -30,13 +32,17 @@ public class MissionDirectorNarration : MonoBehaviour
     {
         // if (subtitleText != null) subtitleText.gameObject.SetActive(false);
 
-        if (subtitlePanel != null)
-            subtitlePanel.SetActive(false);
+        //if (subtitlePanel != null)
+           // subtitlePanel.SetActive(false);
         //subtitlePanel.SetActive(true);
     }
 
     public void PlayDialogue(DialogueLine line)
     {
+
+
+        Debug.Log("PLAYING: " + line.subtitleText);
+
         if (!gameObject.activeInHierarchy)
         {
             Debug.LogWarning("MissionDirector is inactive!");
@@ -61,37 +67,43 @@ public class MissionDirectorNarration : MonoBehaviour
 
     IEnumerator PlayDialogueRoutine(DialogueLine line)
     {
+        if (line == null)
+        {
+            Debug.LogWarning("DialogueLine is NULL");
+            yield break;
+        }
+
+
+        Debug.Log("Subtitle panel active BEFORE: " + subtitlePanel.activeSelf);
         subtitlePanel.SetActive(true);
+        Debug.Log("Subtitle panel active AFTER: " + subtitlePanel.activeSelf);
+
+        Debug.Log("Speaker = " + line.speakerName);
+        Debug.Log("Subtitle = " + line.subtitleText);
 
         speakerText.text = line.speakerName;
         subtitleText.text = line.subtitleText;
 
-        narrationAudioSource.clip = line.audioClip;
-        narrationAudioSource.Play();
+        if (line.audioClip != null)
+        {
+            narrationAudioSource.clip = line.audioClip;
+            narrationAudioSource.Play();
 
-        yield return new WaitForSeconds(
-            line.audioClip.length);
+            yield return new WaitForSeconds(line.audioClip.length);
+        }
+        else
+        {
+            Debug.LogWarning(
+                $"No audio clip assigned for dialogue: {line.subtitleText}"
+            );
+
+            yield return new WaitForSeconds(3f);
+        }
 
         subtitlePanel.SetActive(false);
     }
 
-   // private IEnumerator DisplaySubtitle(string subtitle, float audioLength)
-   // {
-     //   subtitleText.text = subtitle;
-     //   subtitleText.gameObject.SetActive(true);
-
-      //  yield return new WaitForSeconds(audioLength);
-
-       // subtitleText.gameObject.SetActive(false);
-   // }
-
-   // public void StopNarration()
-   // {
-   //     if (narrationAudioSource != null) narrationAudioSource.Stop();
-    //    if (subtitleCoroutine != null)
-     //   {
-      //      StopCoroutine(subtitleCoroutine);
-      //      subtitleText.gameObject.SetActive(false);
-      //  }
-   // }
 }
+
+   
+

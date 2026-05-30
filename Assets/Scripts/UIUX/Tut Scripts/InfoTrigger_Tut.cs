@@ -5,7 +5,7 @@ public class InfoTrigger_Tut : MonoBehaviour
     
 
     [Header("Info Content")]
-    [SerializeField] private string infoTitle = "Point of Interest";
+    [SerializeField] private string infoTitle = "MISSION CONTROLS";
     [TextArea(3, 6)]
     [SerializeField] private string infoBody = "Enter your information text here.";
 

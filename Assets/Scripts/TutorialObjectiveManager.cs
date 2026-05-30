@@ -49,10 +49,10 @@ public class TutorialObjectiveManager : MonoBehaviour
        // Instance = this;
     }
 
-    void Start()
-    {
-        StartTutorial();
-    }
+  //  void Start()
+   // {
+      //  StartTutorial();
+    //}
 
     public void StartTutorial()
     {
@@ -92,10 +92,15 @@ public class TutorialObjectiveManager : MonoBehaviour
                 //current.subtitleText
             );
         }
+        else
+        {
+            Debug.Log(
+                $"Tutorial Objective {currentObjectiveIndex}: {currentObjective.objectiveText}"
+                );
 
-        Debug.Log(
-            $"Tutorial Objective {currentObjectiveIndex}: {currentObjective.objectiveText}"
-            ); //}\" New Objective: " + current.objectiveText);
+        }
+
+             //}\" New Objective: " + current.objectiveText);
 
         //AdvancedObjective();
     }

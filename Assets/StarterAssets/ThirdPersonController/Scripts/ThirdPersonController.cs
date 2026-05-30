@@ -82,6 +82,8 @@ namespace StarterAssets
 
         private bool _isCrouching;
 
+       public bool CanMove = true;
+
         [Header("Ceiling Check")]
         public float CeilingCheckDistance = 1.4f;
         public LayerMask CeilingLayers;
@@ -257,6 +259,18 @@ namespace StarterAssets
 
         private void Move()
         {
+           if (!CanMove)
+           {
+               _input.move = Vector2.zero;
+
+                if (_hasAnimator)
+                {
+                    _animator.SetFloat(_animIDGrounded, 0);
+                }
+
+                return;
+           }
+
 
             float targetSpeed;
 

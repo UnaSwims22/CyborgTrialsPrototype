@@ -38,6 +38,8 @@ public class MissionObjectiveUI : MonoBehaviour
 
     public void ShowObjective(string objective)
     {
+        Debug.Log("SHOWING OBJECTIVE: " + objective);
+
         // if (objectivePanel == null || objectiveText == null) return;
         if (displayCoroutine != null)
         {
